@@ -20,7 +20,7 @@ const columnHeader = [
     "Link",
     "Notes",
     "Status",
-    ]
+]
 
 
 export default function ApplicationsTable() {

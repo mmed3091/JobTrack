@@ -1,5 +1,5 @@
 import * as React from "react"
-
+import { applicationFields } from "@/components/features/application-fields"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -19,6 +19,9 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+
+
+
 export function CardWithForm() {
   return (
     <Card className="w-[350px]">
@@ -30,11 +33,23 @@ export function CardWithForm() {
         <form>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
+
+                     { applicationFields.map((field) => (
+                         <div key={field.id}>
+                            <Label htmlFor={field.id}>{field.label}</Label>
+                            <Input id={field.id} placeholder="Start typing .." />
+                         </div>
+
+                         )) }
+
+
               <Label htmlFor="name">Name</Label>
               <Input id="name" placeholder="Name of your project" />
+
             </div>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="framework">Framework</Label>
+              {/**
+                  <Label htmlFor="framework">Framework</Label>
               <Select>
                 <SelectTrigger id="framework">
                   <SelectValue placeholder="Select" />
@@ -45,7 +60,7 @@ export function CardWithForm() {
                   <SelectItem value="astro">Astro</SelectItem>
                   <SelectItem value="nuxt">Nuxt.js</SelectItem>
                 </SelectContent>
-              </Select>
+              </Select>*/}
             </div>
           </div>
         </form>
