@@ -15,7 +15,6 @@ export default function Page() {
       <p>Application Page</p>
       <ApplicationsTable/>
       <div>
-            <Button>Add New Application</Button>
             <Link href="/applications/create">Add New Application</Link>
        </div>
 

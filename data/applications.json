@@ -1,0 +1,17 @@
+{
+  "applications": [
+    {
+      "company": "Apple",
+      "roleTitle": "Junior Developer",
+      "type": "Hybrid",
+      "location": "Sydney",
+      "deadline": "12/05/2026",
+      "eligibility": "Eligible",
+      "eligibilityReasoning": "None",
+      "salary": "$120,000",
+      "link": "https://www.reddit.com",
+      "notes": "/",
+      "status": "Resume Screening"
+    }
+  ]
+}
