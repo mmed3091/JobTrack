@@ -4,6 +4,7 @@ export default function Page() {
   return (
       <>
 
+        
         <div>Create new application page</div>
         <CardWithForm/>
 

@@ -1,19 +1,19 @@
 import ApplicationsTable from '@/components/features/applications-table';
-import {Button} from "@/components/ui/button"
-import NewApplicationSheet from "@/components/features/new-application-sheet"
-import Link from 'next/link'
+import {Button} from "@/components/ui/button";
+import Link from 'next/link';
+import { fetchAllApplications } from '@/lib/data';
 
 
-   <Link href="/dashboard">Dashboard</Link>
+export default async function Page() {
+  const data = await fetchAllApplications();
 
+  // TODO: remove console.log(data) 
+  console.log(data);
 
-
-export default function Page() {
   return (
       <>
-
       <p>Application Page</p>
-      <ApplicationsTable/>
+      <ApplicationsTable data={data}/>
       <div>
             <Link href="/applications/create">Add New Application</Link>
        </div>
