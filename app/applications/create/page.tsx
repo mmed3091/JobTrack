@@ -1,14 +1,10 @@
-import {CardWithForm} from '@/components/features/new-application-card-form'
+import { CardWithForm } from "@/components/ui/applications/new-application-card-form";
 
 export default function Page() {
   return (
-      <>
-
-        
-        <div>Create new application page</div>
-        <CardWithForm/>
-
-
-      </>
-    );
+    <>
+      <div>Create new application page</div>
+      <CardWithForm />
+    </>
+  );
 }

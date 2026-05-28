@@ -1,6 +1,5 @@
 import * as React from "react"
-import { applicationFields } from "@/components/features/application-fields"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/ui/button"
 import {
   Card,
   CardContent,
@@ -8,16 +7,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/ui/card"
+import { Input } from "@/ui/input"
+import { Label } from "@/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/ui/select"
 import Link from "next/link"
 import { createApplication } from "@/lib/actions"
 
@@ -51,19 +50,7 @@ export function CardWithForm() {
               <Input id="name" placeholder="Name of your project" />
             </div>
             <div className="flex flex-col space-y-1.5">
-              {/**
-                  <Label htmlFor="framework">Framework</Label>
-              <Select>
-                <SelectTrigger id="framework">
-                  <SelectValue placeholder="Select" />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  <SelectItem value="next">Next.js</SelectItem>
-                  <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                  <SelectItem value="astro">Astro</SelectItem>
-                  <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                </SelectContent>
-              </Select>*/}
+              
             </div>
           </div>
         </form>

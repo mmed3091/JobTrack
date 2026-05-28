@@ -8,11 +8,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Button } from "../ui/button";
+} from "@/ui/table";
+import { Button } from "../button";
 import { deleteApplication } from "@/lib/actions";
 import { Application } from "@/lib/definitions";
-
+import {  DeleteApplication } from "./buttons";
 
 const columnLabels = [
   { key: "company", label: "Company" },
@@ -26,7 +26,7 @@ const columnLabels = [
   { key: "status", label: "Status" },
 ];
 
-export default function ApplicationsTable({data}: {data: Application[]}) {
+export default function ApplicationsTable({ data }: { data: Application[] }) {
   return (
     <Table>
       <TableCaption>A list of your applications.</TableCaption>
@@ -46,25 +46,28 @@ export default function ApplicationsTable({data}: {data: Application[]}) {
 
       {/* BODY */}
       <TableBody>
-        {data.map((row) => (
-          <TableRow key={row.id}>
-            <TableCell>{row.company}</TableCell>
-            <TableCell>{row.roleTitle}</TableCell>
-            <TableCell>{row.location}</TableCell>
+        {data.map((app) => (
+          <TableRow key={app.id}>
+            <TableCell>{app.company}</TableCell>
+            <TableCell>{app.roleTitle}</TableCell>
+            <TableCell>{app.location}</TableCell>
             <TableCell>
-              {new Date(row.deadline).toLocaleDateString()}
+              {new Date(app.deadline).toLocaleDateString()}
             </TableCell>{" "}
             {/**TODO: fix deadline type or how you parse it in from database */}
-            <TableCell>{row.meetsReqs ? "Yes" : "No"}</TableCell>
-            <TableCell>{row.salary}</TableCell>{" "}
+            <TableCell>{app.meetsReqs ? "Yes" : "No"}</TableCell>
+            <TableCell>{app.salary}</TableCell>{" "}
             {/**TODO: fix salary type or how you parse it in from database*/}
             <TableCell>
-              <a href={row.jobUrl} target="_blank" rel="noopener noreferrer">
-                {row.jobUrl}
+              <a href={app.jobUrl} target="_blank" rel="noopener noreferrer">
+                {app.jobUrl}
               </a>
             </TableCell>
-            <TableCell>{row.notes ?? "/"}</TableCell>
-            <TableCell>{row.status}</TableCell>
+            <TableCell>{app.notes ?? "/"}</TableCell>
+            <TableCell>{app.status}</TableCell>
+            <TableCell>
+              <DeleteApplication id={app.id}></DeleteApplication>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
