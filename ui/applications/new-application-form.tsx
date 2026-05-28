@@ -19,10 +19,12 @@ import {
 } from "@/ui/select"
 import Link from "next/link"
 import { createApplication } from "@/lib/actions"
+import { columnLabels } from "./column-labels"
 
 
 
-export function CardWithForm() {
+
+export function Form() {
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -34,32 +36,25 @@ export function CardWithForm() {
       <CardContent>
         <form id="app-form" action={createApplication}>
           <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              {applicationFields.map((field) => (
-                <div key={field.id}>
-                  <Label htmlFor={field.id}>{field.label}</Label>
+            <div className="flex flex-col space-y-4">
+              {columnLabels.map((col) => (
+                <div key={col.key} className="flex flex-col space-y-1">
+                  <Label htmlFor={col.key}>{col.label}</Label>
                   <Input
-                    id={field.id}
-                    name={field.id}
-                    placeholder="Start typing .."
+                    id={col.key}
+                    name={col.key}
+                    placeholder={`Enter ${col.label.toLowerCase()}...`}
                   />
                 </div>
               ))}
-
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Name of your project" />
             </div>
-            <div className="flex flex-col space-y-1.5">
-              
-            </div>
+            <div className="flex flex-col space-y-1.5"></div>
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
         <Link href="/applications">Cancel</Link>
-
-        {/**/}
-        <Button type="submit" form="app-form">Deploy</Button>
+        <Button type="submit" form="app-form">Create</Button>
       </CardFooter>
     </Card>
   );

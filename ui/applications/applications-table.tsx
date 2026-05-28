@@ -13,20 +13,13 @@ import { Button } from "../button";
 import { deleteApplication } from "@/lib/actions";
 import { Application } from "@/lib/definitions";
 import {  DeleteApplication } from "./buttons";
+import { columnLabels } from "./column-labels";
 
-const columnLabels = [
-  { key: "company", label: "Company" },
-  { key: "roleTitle", label: "Role" },
-  { key: "location", label: "Location" },
-  { key: "deadline", label: "Deadline" },
-  { key: "meetsReqs", label: "Meets Requirements" },
-  { key: "salary", label: "Salary" },
-  { key: "jobUrl", label: "Link" },
-  { key: "notes", label: "Notes" },
-  { key: "status", label: "Status" },
-];
 
 export default function ApplicationsTable({ data }: { data: Application[] }) {
+
+  
+  
   return (
     <Table>
       <TableCaption>A list of your applications.</TableCaption>
@@ -49,14 +42,19 @@ export default function ApplicationsTable({ data }: { data: Application[] }) {
         {data.map((app) => (
           <TableRow key={app.id}>
             <TableCell>{app.company}</TableCell>
-            <TableCell>{app.roleTitle}</TableCell>
+            <TableCell >{app.roleTitle} </TableCell>
             <TableCell>{app.location}</TableCell>
             <TableCell>
               {new Date(app.deadline).toLocaleDateString()}
             </TableCell>{" "}
             {/**TODO: fix deadline type or how you parse it in from database */}
-            <TableCell>{app.meetsReqs ? "Yes" : "No"}</TableCell>
-            <TableCell>{app.salary}</TableCell>{" "}
+            <TableCell>{app.meetsReqs ? "No" : "Yes"}</TableCell>
+            <TableCell>
+              {new Intl.NumberFormat("en-AU", {
+                style: "currency",
+                currency: "AUD",
+              }).format(app.salary)}
+            </TableCell>
             {/**TODO: fix salary type or how you parse it in from database*/}
             <TableCell>
               <a href={app.jobUrl} target="_blank" rel="noopener noreferrer">
