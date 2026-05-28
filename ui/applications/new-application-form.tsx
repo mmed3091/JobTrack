@@ -34,7 +34,7 @@ export function Form() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form id="app-form" action={createApplication}>
+        <form id="new-app-form" action={createApplication}>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-4">
               {columnLabels.map((col) => (
@@ -54,7 +54,7 @@ export function Form() {
       </CardContent>
       <CardFooter className="flex justify-between">
         <Link href="/applications">Cancel</Link>
-        <Button type="submit" form="app-form">Create</Button>
+        <Button type="submit" form="new-app-form">Create</Button>
       </CardFooter>
     </Card>
   );

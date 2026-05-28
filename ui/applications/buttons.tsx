@@ -24,3 +24,18 @@ export function CreateApplication() {
     </Link>
   );
 }
+
+
+export function UpdateApplication({id}: {id: string}) {
+
+  return (
+    <Link
+      href={`/applications/${id}/edit`}
+      className="rounded-md border p-2 hover:bg-gray-100"
+    >
+      <span>Edit</span>{" "}
+    </Link>
+  );
+
+}
+

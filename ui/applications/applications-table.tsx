@@ -12,14 +12,12 @@ import {
 import { Button } from "../button";
 import { deleteApplication } from "@/lib/actions";
 import { Application } from "@/lib/definitions";
-import {  DeleteApplication } from "./buttons";
+import {  DeleteApplication, UpdateApplication } from "./buttons";
 import { columnLabels } from "./column-labels";
 
 
 export default function ApplicationsTable({ data }: { data: Application[] }) {
 
-  
-  
   return (
     <Table>
       <TableCaption>A list of your applications.</TableCaption>
@@ -42,7 +40,7 @@ export default function ApplicationsTable({ data }: { data: Application[] }) {
         {data.map((app) => (
           <TableRow key={app.id}>
             <TableCell>{app.company}</TableCell>
-            <TableCell >{app.roleTitle} </TableCell>
+            <TableCell>{app.roleTitle} </TableCell>
             <TableCell>{app.location}</TableCell>
             <TableCell>
               {new Date(app.deadline).toLocaleDateString()}
@@ -64,7 +62,10 @@ export default function ApplicationsTable({ data }: { data: Application[] }) {
             <TableCell>{app.notes ?? "/"}</TableCell>
             <TableCell>{app.status}</TableCell>
             <TableCell>
-              <DeleteApplication id={app.id}></DeleteApplication>
+              <div className="flex justify-end gap-3">
+                <DeleteApplication id={app.id}></DeleteApplication>
+                <UpdateApplication id={app.id}></UpdateApplication>
+              </div>
             </TableCell>
           </TableRow>
         ))}
