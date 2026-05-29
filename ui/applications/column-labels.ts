@@ -3,7 +3,6 @@ export const columnLabels = [
   { key: "roleTitle", label: "Role" },
   { key: "location", label: "Location" },
   { key: "deadline", label: "Deadline" },
-  { key: "meetsReqs", label: "Meets Requirements" },
   { key: "salary", label: "Salary" },
   { key: "jobUrl", label: "Link" },
   { key: "notes", label: "Notes" },

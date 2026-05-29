@@ -46,7 +46,6 @@ export default function ApplicationsTable({ data }: { data: Application[] }) {
               {new Date(app.deadline).toLocaleDateString()}
             </TableCell>{" "}
             {/**TODO: fix deadline type or how you parse it in from database */}
-            <TableCell>{app.meetsReqs ? "No" : "Yes"}</TableCell>
             <TableCell>
               {new Intl.NumberFormat("en-AU", {
                 style: "currency",

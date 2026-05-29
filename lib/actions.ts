@@ -11,7 +11,6 @@ const FormSchema = z.object({
   roleTitle: z.string(),
   location: z.string(),
   deadline: z.string(),
-  meetsReqs: z.coerce.boolean(),
   salary: z.coerce.number(),
   jobUrl: z.string().url(),
   notes: z.string().optional(),
@@ -23,11 +22,10 @@ const CreateApplication = FormSchema.omit({id: true, deadline: true});
 //TODO - reduce duplicate code when parsing in formdata for update and create applciation fucntions
 
 export async function createApplication(formData: FormData) {
-  const {company, roleTitle, location, meetsReqs, salary, jobUrl, notes, status} = CreateApplication.parse({
+  const {company, roleTitle, location, salary, jobUrl, notes, status} = CreateApplication.parse({
     company: formData.get("company"),
     roleTitle: formData.get("roleTitle"),
     location: formData.get("location"),
-    meetsReqs: formData.get("meetsReqs"),
     salary: formData.get("salary"),
     jobUrl: formData.get("jobUrl"),
     notes: formData.get("notes"),
@@ -42,7 +40,6 @@ export async function createApplication(formData: FormData) {
     roleTitle,
     location,
     deadline,
-    meetsReqs,
     salary,
     jobUrl,
     notes,
@@ -50,8 +47,8 @@ export async function createApplication(formData: FormData) {
   });
 
   try {
-    await sql`INSERT INTO applications (company, role_title, location, deadline, meets_reqs, salary, job_url, notes, status)
-              VALUES (${company}, ${roleTitle}, ${location}, ${deadline}, ${meetsReqs}, ${salary}, ${jobUrl}, ${notes ?? null}, ${status})`;
+    await sql`INSERT INTO applications (company, role_title, location, deadline, salary, job_url, notes, status)
+              VALUES (${company}, ${roleTitle}, ${location}, ${deadline}, ${salary}, ${jobUrl}, ${notes ?? null}, ${status})`;
   } catch (error) {
     console.error("Database error: ", error);
         throw new Error(`Failed to create new application.`);
@@ -70,7 +67,6 @@ export async function updateApplication(id: string, formData: FormData) {
     company,
     roleTitle,
     location,
-    meetsReqs,
     salary,
     jobUrl,
     notes,
@@ -79,7 +75,6 @@ export async function updateApplication(id: string, formData: FormData) {
     company: formData.get("company"),
     roleTitle: formData.get("roleTitle"),
     location: formData.get("location"),
-    meetsReqs: formData.get("meetsReqs"),
     salary: formData.get("salary"),
     jobUrl: formData.get("jobUrl"),
     notes: formData.get("notes"),
@@ -92,8 +87,7 @@ export async function updateApplication(id: string, formData: FormData) {
   try {
     await sql`UPDATE applications 
               SET company = ${company}, role_title = ${roleTitle}, 
-              location = ${location}, deadline = ${deadline}, 
-              meets_reqs = ${meetsReqs}, 
+              location = ${location}, deadline = ${deadline},  
               salary = ${salary}, job_url = ${jobUrl}, 
               notes = ${notes ?? null}, status = ${status}
               WHERE id = ${id}

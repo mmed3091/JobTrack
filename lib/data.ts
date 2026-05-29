@@ -50,6 +50,8 @@ export async function fetchApplicationById(id: string) {
 
         const row = application[0];
         console.log(`Retrieved application ${id}`);
+        console.log(row.deadline);
+        console.log(new Date(row.deadline));
 
         return {
           id: row.id,

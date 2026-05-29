@@ -32,8 +32,10 @@ import { columnLabels } from "./column-labels";
 
 export default function Form({ application }: { application: Application }) {
 
-    const app = application;
-    const updateApplicationWithId = updateApplication.bind(null, app.id);
+    const updateApplicationWithId = updateApplication.bind(null, application.id);
+    const date = new Date(application.deadline);
+    application.deadline = `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${String(date.getFullYear())}`;
+    
 
     return (
       <Card className="w-[350px]">
@@ -53,7 +55,7 @@ export default function Form({ application }: { application: Application }) {
                     <Input
                       id={col.key}
                       name={col.key}
-                      defaultValue={String(app[col.key as keyof typeof app] ?? "")}
+                      defaultValue={String(application[col.key as keyof typeof application] ?? "")}
                     />
                   </div>
                 ))}
